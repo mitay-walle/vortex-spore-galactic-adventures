@@ -1,0 +1,6 @@
+{
+    "name": "Game: Spore Galactic Adventures",
+    "author": "Mitaywalle",
+    "version": "0.1.2",
+    "description": "Support for Spore Galactic Adventures: .package and .sporemod mods, ModAPI DLL mods via SporeModLoader"
+}

@@ -1,0 +1,6 @@
+{
+    "name": "Game: Spore",
+    "author": "Mitaywalle",
+    "version": "0.1.1",
+    "description": "Support for Spore: .package and .sporemod mods. ModAPI mods need the Spore Galactic Adventures extension"
+}
