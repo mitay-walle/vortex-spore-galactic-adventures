@@ -26,8 +26,8 @@ const SML_PROXY = path.join('SporebinEP1', 'dinput8.dll');
 const XML_GAME_GA = 'galacticadventures';
 const XML_GAME_SPORE = 'spore';
 
-// ids must be unique across both Spore extensions, Vortex looks mod types up by id only
-const MODTYPE_ROOT = `${GAME_ID}-game-root`;
+// must differ between both Spore extensions, Vortex looks mod types up by id only (see game.js)
+const MODTYPE_ROOT = GAME.modTypeRoot;
 const SPOREMOD_EXTRACT_DIR = '__sporemod';
 const NOTIF_SML_MISSING = `${GAME_ID}-sporemodloader-missing`;
 const NOTIF_LAA = `${GAME_ID}-large-address-aware`;
@@ -99,7 +99,7 @@ function main(context) {
 
     // Destinations of this type are relative to the game folder (DataEP1/..., SporeModLoader/...)
     context.registerModType(MODTYPE_ROOT, 25, gameId => gameId === GAME_ID,
-        () => getGamePath(context.api), () => Promise.resolve(false),
+        game => selectors.discoveryByGame(context.api.getState(), game.id)?.path, () => Promise.resolve(false),
         { name: 'Spore game folder' });
 
     if (GAME.modApi) {
