@@ -100,7 +100,7 @@ function main(context) {
     // Destinations of this type are relative to the game folder (DataEP1/..., SporeModLoader/...)
     context.registerModType(MODTYPE_ROOT, 25, gameId => gameId === GAME_ID,
         game => selectors.discoveryByGame(context.api.getState(), game.id)?.path, () => Promise.resolve(false),
-        { name: 'Spore game folder' });
+        { name: `${GAME.name} game folder` });
 
     if (GAME.modApi) {
         context.registerInstaller(`${GAME_ID}-sporemodloader`, 20, testSporeModLoader, installSporeModLoader);

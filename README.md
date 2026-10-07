@@ -4,7 +4,7 @@ Two Vortex extensions built from the same `index.js`, `games/<id>/game.js` descr
 - **Spore Galactic Adventures** (`sporegalacticadventures`, [Nexus page](https://www.nexusmods.com/site/mods/2424)):
   `SporebinEP1/SporeApp.exe`, mods go to `DataEP1`, ModAPI mods supported
 - **Spore** (`spore`, [Nexus page](https://www.nexusmods.com/site/mods/2423),
-  [packaged extension repo](https://github.com/mitay-walle/vortex-game-extension-spore-base)):
+  [packaged extension repo](https://github.com/mitay-walle/vortex-spore)):
   `SporeBin/SporeApp.exe` without the expansion, mods go to `Data`.
   ModAPI mods are refused (ModAPI only works with Galactic Adventures),
   files meant for Galactic Adventures are installed to `DataEP1` with a warning

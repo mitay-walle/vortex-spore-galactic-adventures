@@ -9,8 +9,8 @@ module.exports = {
     // DataDir of this key is <game>/Data
     registryKey: 'Electronic Arts\\SPORE',
     modApi: false,
-    // mod type of mods with files outside Data. Must differ from the Galactic Adventures one
-    modTypeRoot: 'spore-base-game-root',
+    // mod type of mods with files outside Data
+    modTypeRoot: 'spore-root',
     otherExecutable: {
         id: 'SporeGA',
         name: 'Spore Galactic Adventures',
