@@ -26,8 +26,6 @@ const SML_PROXY = path.join('SporebinEP1', 'dinput8.dll');
 const XML_GAME_GA = 'galacticadventures';
 const XML_GAME_SPORE = 'spore';
 
-// must differ between both Spore extensions, Vortex looks mod types up by id only (see game.js)
-const MODTYPE_ROOT = GAME.modTypeRoot;
 const SPOREMOD_EXTRACT_DIR = '__sporemod';
 const NOTIF_SML_MISSING = `${GAME_ID}-sporemodloader-missing`;
 const NOTIF_LAA = `${GAME_ID}-large-address-aware`;
@@ -80,7 +78,8 @@ function main(context) {
         mergeMods: true,
         queryPath: findGame,
         supportedTools: tools,
-        queryModPath: () => GAME.dataFolder,
+        // mods are deployed to the game folder, installers put files into DataEP1/, Data/, SporeModLoader/...
+        queryModPath: () => '.',
         logo: 'gameart.png',
         executable: () => GAME_EXE,
         requiredFiles: [GAME_EXE],
@@ -96,11 +95,6 @@ function main(context) {
             compatibleDownloads: GAME.compatibleDownloads,
         },
     });
-
-    // Destinations of this type are relative to the game folder (DataEP1/..., SporeModLoader/...)
-    context.registerModType(MODTYPE_ROOT, 25, gameId => gameId === GAME_ID,
-        game => selectors.discoveryByGame(context.api.getState(), game.id)?.path, () => Promise.resolve(false),
-        { name: `${GAME.name} game folder` });
 
     if (GAME.modApi) {
         context.registerInstaller(`${GAME_ID}-sporemodloader`, 20, testSporeModLoader, installSporeModLoader);
@@ -392,7 +386,6 @@ function installSporeModLoader(files) {
     const instructions = files
         .filter(file => !file.endsWith(path.sep) && file.startsWith(root))
         .map(file => ({ type: 'copy', source: file, destination: file.slice(root.length) }));
-    instructions.push({ type: 'setmodtype', value: MODTYPE_ROOT });
     return Promise.resolve({ instructions });
 }
 
@@ -743,7 +736,6 @@ async function installSporeMod(api, files, destinationPath, choices, unattended)
 
     const instructions = Array.from(copies.values())
         .map(copy => ({ type: 'copy', source: copy.source, destination: copy.destination }));
-    instructions.push({ type: 'setmodtype', value: MODTYPE_ROOT });
 
     const components = results.filter(result => result.name !== undefined)
         .reduce((prev, result) => ({ ...prev, [result.name]: result.selected }), {});

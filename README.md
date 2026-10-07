@@ -9,6 +9,9 @@ Two Vortex extensions built from the same `index.js`, `games/<id>/game.js` descr
   ModAPI mods are refused (ModAPI only works with Galactic Adventures),
   files meant for Galactic Adventures are installed to `DataEP1` with a warning
 
+Mods are deployed to the game folder, installers put their files into `DataEP1/`, `Data/` or
+`SporeModLoader/ModLibs/`. Archives the installers don't recognize are deployed as they are.
+
 Downloads from nexusmods.com/spore belong to the Spore extension, Galactic Adventures declares them
 compatible (`compatibleDownloads`), so they can be installed into it as well.
 

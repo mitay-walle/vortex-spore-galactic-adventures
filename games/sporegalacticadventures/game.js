@@ -14,8 +14,6 @@ module.exports = {
     // the artwork of the Spore section for this game and pick it over the Spore extension
     compatibleDownloads: ['spore'],
     modApi: true,
-    // mod type of mods with files outside DataEP1 (Data, SporeModLoader, ...)
-    modTypeRoot: 'sporegalacticadventures-root',
     otherExecutable: {
         id: 'SporeCore',
         name: 'Spore (without Galactic Adventures)',
